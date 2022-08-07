@@ -69,63 +69,63 @@ Field types can be:
      - `DDS type <https://design.ros2.org/articles/mapping_dds_types.html>`__
    * - bool
      - bool
-     - builtins.bool
+     - bool
      - boolean
    * - byte
      - uint8_t
-     - builtins.bytes
+     - bytes
      - octet
    * - char
      - char
-     - builtins.str
+     - str
      - char
    * - float32
      - float
-     - builtins.float
+     - float
      - float
    * - float64
      - double
-     - builtins.float
+     - float
      - double
    * - int8
      - int8_t
-     - builtins.int
+     - int
      - octet
    * - uint8
      - uint8_t
-     - builtins.int
+     - int
      - octet
    * - int16
      - int16_t
-     - builtins.int
+     - int
      - short
    * - uint16
      - uint16_t
-     - builtins.int
+     - int
      - unsigned short
    * - int32
      - int32_t
-     - builtins.int
+     - int
      - long
    * - uint32
      - uint32_t
-     - builtins.int
+     - int
      - unsigned long
    * - int64
      - int64_t
-     - builtins.int
+     - int
      - long long
    * - uint64
      - uint64_t
-     - builtins.int
+     - int
      - unsigned long long
    * - string
      - std::string
-     - builtins.str
+     - str
      - string
    * - wstring
      - std::u16string
-     - builtins.str
+     - str
      - wstring
 
 
@@ -140,19 +140,19 @@ Field types can be:
      - `DDS type <https://design.ros2.org/articles/mapping_dds_types.html>`__
    * - static array
      - std::array<T, N>
-     - builtins.list
+     - list
      - T[N]
    * - unbounded dynamic array
      - std::vector<T>
-     - builtins.list
+     - list
      - sequence<T>
    * - bounded dynamic array
      - custom_class<T, N>
-     - builtins.list
+     - list
      - sequence<T, N>
    * - bounded string
      - std::string
-     - builtins.str
+     - str
      - string
 
 These array and sequence types have special mappings.
