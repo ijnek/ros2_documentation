@@ -143,9 +143,9 @@ Field types can be:
      - builtins.list
      - T[N]
    * - unbounded dynamic array
-     - std::vector
+     - std::vector<T>
      - builtins.list
-     - sequence
+     - sequence<T>
    * - bounded dynamic array
      - custom_class<T, N>
      - builtins.list
