@@ -155,6 +155,33 @@ Field types can be:
      - builtins.str*
      - string
 
+These array and sequence types have special mappings.
+
+.. list-table::
+   :header-rows: 1
+
+   * - Type name
+     - `DDS type <https://design.ros2.org/articles/mapping_dds_types.html>`__
+     - `Python <https://design.ros2.org/articles/generated_interfaces_python.html>`__
+   * - static array
+     - T[N]
+     - numpy.ndarray(shape=(N, ), dtype=numpy.DT)
+   * - unbounded dynamic array
+     - sequence<T>
+     - array.array(typecode=TC)
+   * - bounded dynamic array
+     - sequence<T, N>
+     - array.array(typecode=TC)
+   * - byte static array
+     - octet[N]
+     - bytes
+   * - byte unbounded dynamic array
+     - sequence<octet>
+     - bytes
+   * - byte bounded dynamic array
+     - sequence<octet, N>
+     - bytes
+
 
 All types that are more permissive than their ROS definition enforce the ROS constraints in range and length by software
 
@@ -227,7 +254,7 @@ For example:
 
    Constants names have to be UPPERCASE
 
-3. Service description specification
+1. Service description specification
 ------------------------------------
 
 Services are described and defined in ``.srv`` files in the ``srv/`` directory of a ROS package.
