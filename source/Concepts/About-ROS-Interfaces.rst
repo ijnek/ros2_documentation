@@ -139,15 +139,15 @@ Field types can be:
      - `Python <https://design.ros2.org/articles/generated_interfaces_python.html>`__
      - `DDS type <https://design.ros2.org/articles/mapping_dds_types.html>`__
    * - static array
-     - std::array<T, N>
+     - std::array
      - list
      - T[N]
    * - unbounded dynamic array
-     - std::vector<T>
+     - std::vector
      - list
      - sequence<T>
    * - bounded dynamic array
-     - custom_class<T, N>
+     - rosidl_runtime_cpp::BoundedVector
      - list
      - sequence<T, N>
    * - bounded string
