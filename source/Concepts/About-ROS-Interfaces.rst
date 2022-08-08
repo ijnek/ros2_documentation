@@ -14,7 +14,7 @@ About ROS 2 interfaces
 -------------
 
 ROS applications typically communicate through interfaces of one of three types: messages, services and actions.
-ROS 2 uses a simplified description language, the interface definition language (IDL), to describe these interfaces.
+ROS 2 uses a simplified description language, the `Interface Definition Language (IDL) <https://www.omg.org/spec/IDL/>`__, to describe these interfaces.
 This description makes it easy for ROS tools to automatically generate source code for the interface type in several target languages.
 
 In this document we will describe the supported types.
@@ -76,7 +76,7 @@ Field types can be:
    * - byte
      - octet
      - uint8_t
-     - std::byte (THIS IS unsigned char BEFORE C++17)
+     - unsigned char
      - bytes
    * - char
      - uint8 (char)
