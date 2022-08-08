@@ -63,71 +63,96 @@ Field types can be:
 .. list-table::
    :header-rows: 1
 
-   * - Type name
-     - `C++ <https://design.ros2.org/articles/generated_interfaces_cpp.html>`__
-     - `Python <https://design.ros2.org/articles/generated_interfaces_python.html>`__
-     - `DDS type <https://design.ros2.org/articles/mapping_dds_types.html>`__
+   * - .msg
+     - IDL
+     - C
+     - C++
+     - Python
    * - bool
-     - bool
-     - bool
      - boolean
+     - bool
+     - bool
+     - bool
    * - byte
-     - uint8_t
-     - bytes
      - octet
+     - uint8_t
+     - std::byte (THIS IS unsigned char BEFORE C++17)
+     - bytes
    * - char
-     - char
-     - str
-     - char
+     - uint8 (char)
+     - uint8_t
+     - uint8_t
+     - int
    * - float32
+     - float
      - float
      - float
      - float
    * - float64
      - double
-     - float
      - double
+     - double
+     - float
    * - int8
+     - int8
+     - int8_t
      - int8_t
      - int
-     - octet
    * - uint8
+     - uint8
+     - uint8_t
      - uint8_t
      - int
-     - octet
    * - int16
+     - int16 (short)
+     - int16_t
      - int16_t
      - int
-     - short
    * - uint16
+     - uint16 (unsigned short)
+     - uint16_t
      - uint16_t
      - int
-     - unsigned short
    * - int32
+     - int32 (long)
+     - int32_t
      - int32_t
      - int
-     - long
    * - uint32
+     - uint32 (unsigned long)
+     - uint32_t
      - uint32_t
      - int
-     - unsigned long
    * - int64
+     - int64 (long long)
+     - int64_t
      - int64_t
      - int
-     - long long
    * - uint64
+     - uint64 (unsigned long long)
+     - uint64_t
      - uint64_t
      - int
-     - unsigned long long
    * - string
+     - string
+     - char *
      - std::string
      - str
-     - string
    * - wstring
+     - wstring
+     - char16_t *
      - std::u16string
      - str
-     - wstring
-
+   * -
+     - wchar
+     - char16_t
+     - char16_t
+     - str
+   * -
+     - long double
+     - long double
+     - long double
+     - float
 
 *Every built-in-type can be used to define arrays:*
 
