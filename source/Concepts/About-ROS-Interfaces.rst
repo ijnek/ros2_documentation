@@ -63,7 +63,7 @@ Field types can be:
 .. list-table::
    :header-rows: 1
 
-   * - .msg
+   * - ROS IDL
      - IDL
      - C
      - C++
@@ -180,7 +180,57 @@ Field types can be:
      - str
      - string
 
-These array and sequence types have special mappings.
+Arrays are defined as below, where T can be any of the built-in-types.
+
+.. list-table::
+   :header-rows: 1
+
+   * - ROS IDL
+     - IDL
+     - C
+     - C++
+     - Python
+   * - T[]
+     - sequence<T>
+     - C
+     - std::vector
+     - list
+   * - T[N]
+     - T__N
+     - C
+     - std::array
+     - list
+   * - T[<=N]
+     - sequence<T, N>
+     - C
+     - rosidl_runtime_cpp::BoundedVector
+     - list
+
+Numerical Types have special mappings.
+
+.. list-table::
+   :header-rows: 1
+
+   * - ROS IDL
+     - IDL
+     - C
+     - C++
+     - Python
+   * - ROS IDL
+     - IDL
+     - C
+     - C++
+     - Python
+   * - ROS IDL
+     - IDL
+     - C
+     - C++
+     - Python
+   * - ROS IDL
+     - IDL
+     - C
+     - C++
+     - Python
 
 .. list-table::
    :header-rows: 1
