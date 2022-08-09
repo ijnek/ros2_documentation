@@ -143,16 +143,6 @@ Field types can be:
      - char16_t *
      - std::u16string
      - str
-   * -
-     - wchar
-     - char16_t
-     - char16_t
-     - str
-   * -
-     - long double
-     - long double
-     - long double
-     - float
 
 *Every built-in-type can be used to define arrays:*
 
@@ -185,52 +175,76 @@ Arrays are defined as below, where T can be any of the built-in-types.
 .. list-table::
    :header-rows: 1
 
-   * - ROS IDL
+   * - Description
+     - ROS IDL
+     - Primitive Type (T)
      - IDL
      - C
      - C++
      - Python
-   * - T[]
+   * - Dynamic Array
+     - T[]
+     - bool, char, string, wstring
      - sequence<T>
      - C
      - std::vector
      - list
-   * - T[N]
+   * -
+     -
+     - float32, float64, int8, uint8, int16, uint16, int32, uint32, int64, uint64
+     - sequence<T>
+     - C
+     - std::vector
+     - array.array
+   * -
+     -
+     - byte
+     - sequence<T>
+     - C
+     - std::vector
+     - bytes
+   * - Fixed-Size Array
+     - T[N]
+     - bool, char, string, wstring
      - T__N
      - C
      - std::array
      - list
-   * - T[<=N]
+   * -
+     -
+     - float32, float64, int8, uint8, int16, uint16, int32, uint32, int64, uint64
+     - T__N
+     - C
+     - std::array
+     - numpy.ndarray
+   * -
+     -
+     - byte
+     - byte__N
+     - C
+     - std::array
+     - bytes
+   * - Bounded Array
+     - T[<=N]
+     - bool, char, string, wstring
      - sequence<T, N>
      - C
      - rosidl_runtime_cpp::BoundedVector
      - list
-
-Numerical Types have special mappings.
-
-.. list-table::
-   :header-rows: 1
-
-   * - ROS IDL
-     - IDL
+   * -
+     -
+     - float32, float64, int8, uint8, int16, uint16, int32, uint32, int64, uint64
+     - sequence<T, N>
      - C
-     - C++
-     - Python
-   * - ROS IDL
-     - IDL
+     - rosidl_runtime_cpp::BoundedVector
+     - array.array
+   * -
+     -
+     - byte
+     - sequence<byte, N>
      - C
-     - C++
-     - Python
-   * - ROS IDL
-     - IDL
-     - C
-     - C++
-     - Python
-   * - ROS IDL
-     - IDL
-     - C
-     - C++
-     - Python
+     - rosidl_runtime_cpp::BoundedVector
+     - bytes
 
 .. list-table::
    :header-rows: 1
