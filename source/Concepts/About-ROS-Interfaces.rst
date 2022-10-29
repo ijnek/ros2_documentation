@@ -343,7 +343,7 @@ For example:
 
    Constants names have to be UPPERCASE
 
-1. Service description specification
+3. Service description specification
 ------------------------------------
 
 Services are described and defined in ``.srv`` files in the ``srv/`` directory of a ROS package.
