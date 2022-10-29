@@ -154,11 +154,11 @@ Field types can be:
      - `Python <https://design.ros2.org/articles/generated_interfaces_python.html>`__
      - `DDS type <https://design.ros2.org/articles/mapping_dds_types.html>`__
    * - static array
-     - std::array
+     - std::array<T, N>
      - list
      - T[N]
    * - unbounded dynamic array
-     - std::vector
+     - std::vector<T>
      - list
      - sequence<T>
    * - bounded dynamic array
@@ -187,42 +187,42 @@ Arrays are defined as below, where T can be any of the built-in-types.
      - bool, char, string, wstring
      - sequence<T>
      - C
-     - std::vector
+     - std::vector<T>
      - list
    * -
      -
      - float32, float64, int8, uint8, int16, uint16, int32, uint32, int64, uint64
      - sequence<T>
      - C
-     - std::vector
+     - std::vector<T>
      - array.array
    * -
      -
      - byte
      - sequence<T>
      - C
-     - std::vector
+     - std::vector<T>
      - bytes
    * - Fixed-Size Array
      - T[N]
      - bool, char, string, wstring
      - T__N
      - C
-     - std::array
+     - std::array<T, N>
      - list
    * -
      -
      - float32, float64, int8, uint8, int16, uint16, int32, uint32, int64, uint64
      - T__N
      - C
-     - std::array
+     - std::array<T, N>
      - numpy.ndarray
    * -
      -
      - byte
      - byte__N
      - C
-     - std::array
+     - std::array<T, N>
      - bytes
    * - Bounded Array
      - T[<=N]
