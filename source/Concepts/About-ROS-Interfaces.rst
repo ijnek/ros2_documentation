@@ -14,7 +14,7 @@ About ROS 2 interfaces
 -------------
 
 ROS applications typically communicate through interfaces of one of three types: messages, services and actions.
-ROS 2 uses a simplified description language, the interface definition language (IDL), to describe these interfaces.
+ROS 2 uses a simplified description language, the `Interface Definition Language (IDL) <https://www.omg.org/spec/IDL/>`__, to describe these interfaces.
 This description makes it easy for ROS tools to automatically generate source code for the interface type in several target languages.
 
 In this document we will describe the supported types.
@@ -63,71 +63,86 @@ Field types can be:
 .. list-table::
    :header-rows: 1
 
-   * - Type name
-     - `C++ <https://design.ros2.org/articles/generated_interfaces_cpp.html>`__
-     - `Python <https://design.ros2.org/articles/generated_interfaces_python.html>`__
-     - `DDS type <https://design.ros2.org/articles/mapping_dds_types.html>`__
+   * - ROS IDL
+     - IDL
+     - C
+     - C++
+     - Python
    * - bool
-     - bool
-     - builtins.bool
      - boolean
+     - bool
+     - bool
+     - bool
    * - byte
-     - uint8_t
-     - builtins.bytes*
      - octet
+     - uint8_t
+     - unsigned char
+     - bytes
    * - char
-     - char
-     - builtins.str*
-     - char
+     - uint8 (char)
+     - uint8_t
+     - uint8_t
+     - int
    * - float32
      - float
-     - builtins.float*
+     - float
+     - float
      - float
    * - float64
      - double
-     - builtins.float*
      - double
+     - double
+     - float
    * - int8
+     - int8
      - int8_t
-     - builtins.int*
-     - octet
+     - int8_t
+     - int
    * - uint8
+     - uint8
      - uint8_t
-     - builtins.int*
-     - octet
+     - uint8_t
+     - int
    * - int16
+     - int16 (short)
      - int16_t
-     - builtins.int*
-     - short
+     - int16_t
+     - int
    * - uint16
+     - uint16 (unsigned short)
      - uint16_t
-     - builtins.int*
-     - unsigned short
+     - uint16_t
+     - int
    * - int32
+     - int32 (long)
      - int32_t
-     - builtins.int*
-     - long
+     - int32_t
+     - int
    * - uint32
+     - uint32 (unsigned long)
      - uint32_t
-     - builtins.int*
-     - unsigned long
+     - uint32_t
+     - int
    * - int64
+     - int64 (long long)
      - int64_t
-     - builtins.int*
-     - long long
+     - int64_t
+     - int
    * - uint64
+     - uint64 (unsigned long long)
      - uint64_t
-     - builtins.int*
-     - unsigned long long
+     - uint64_t
+     - int
    * - string
-     - std::string
-     - builtins.str
      - string
+     - char *
+     - std::string
+     - str
    * - wstring
-     - std::u16string
-     - builtins.str
      - wstring
-
+     - char16_t *
+     - std::u16string
+     - str
 
 *Every built-in-type can be used to define arrays:*
 
@@ -140,20 +155,121 @@ Field types can be:
      - `DDS type <https://design.ros2.org/articles/mapping_dds_types.html>`__
    * - static array
      - std::array<T, N>
-     - builtins.list*
+     - list
      - T[N]
    * - unbounded dynamic array
-     - std::vector
-     - builtins.list
-     - sequence
+     - std::vector<T>
+     - list
+     - sequence<T>
    * - bounded dynamic array
-     - custom_class<T, N>
-     - builtins.list*
+     - rosidl_runtime_cpp::BoundedVector
+     - list
      - sequence<T, N>
    * - bounded string
      - std::string
-     - builtins.str*
+     - str
      - string
+
+Arrays are defined as below, where T can be any of the built-in-types.
+
+.. list-table::
+   :header-rows: 1
+
+   * - Description
+     - ROS IDL
+     - Primitive Type (T)
+     - IDL
+     - C
+     - C++
+     - Python
+   * - Dynamic Array
+     - T[]
+     - bool, char, string, wstring
+     - sequence<T>
+     - C
+     - std::vector<T>
+     - list
+   * -
+     -
+     - float32, float64, int8, uint8, int16, uint16, int32, uint32, int64, uint64
+     - sequence<T>
+     - C
+     - std::vector<T>
+     - array.array
+   * -
+     -
+     - byte
+     - sequence<T>
+     - C
+     - std::vector<T>
+     - bytes
+   * - Fixed-Size Array
+     - T[N]
+     - bool, char, string, wstring
+     - T__N
+     - C
+     - std::array<T, N>
+     - list
+   * -
+     -
+     - float32, float64, int8, uint8, int16, uint16, int32, uint32, int64, uint64
+     - T__N
+     - C
+     - std::array<T, N>
+     - numpy.ndarray
+   * -
+     -
+     - byte
+     - byte__N
+     - C
+     - std::array<T, N>
+     - bytes
+   * - Bounded Array
+     - T[<=N]
+     - bool, char, string, wstring
+     - sequence<T, N>
+     - C
+     - rosidl_runtime_cpp::BoundedVector
+     - list
+   * -
+     -
+     - float32, float64, int8, uint8, int16, uint16, int32, uint32, int64, uint64
+     - sequence<T, N>
+     - C
+     - rosidl_runtime_cpp::BoundedVector
+     - array.array
+   * -
+     -
+     - byte
+     - sequence<byte, N>
+     - C
+     - rosidl_runtime_cpp::BoundedVector
+     - bytes
+
+.. list-table::
+   :header-rows: 1
+
+   * - Type name
+     - `DDS type <https://design.ros2.org/articles/mapping_dds_types.html>`__
+     - `Python <https://design.ros2.org/articles/generated_interfaces_python.html>`__
+   * - static array
+     - T[N]
+     - numpy.ndarray(shape=(N, ), dtype=numpy.DT)
+   * - unbounded dynamic array
+     - sequence<T>
+     - array.array(typecode=TC)
+   * - bounded dynamic array
+     - sequence<T, N>
+     - array.array(typecode=TC)
+   * - byte static array
+     - octet[N]
+     - bytes
+   * - byte unbounded dynamic array
+     - sequence<octet>
+     - bytes
+   * - byte bounded dynamic array
+     - sequence<octet, N>
+     - bytes
 
 
 All types that are more permissive than their ROS definition enforce the ROS constraints in range and length by software
